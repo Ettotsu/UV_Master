@@ -1,9 +1,9 @@
 #include <ios>
 #include <iostream>
+#include <ostream>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window/Mouse.hpp>
-#include <ostream>
 
 #include "SFML/System/Vector2.hpp"
 #include "game.h"
@@ -20,7 +20,6 @@
 GameWindow::GameWindow()
     : window { { WINDOW_WIDTH, WINDOW_HEIGHT }, "UV_Master" } {
     window.setVerticalSyncEnabled(true);
-    Player player;
 
     if (!aTexture.loadFromFile("a.png")) {
         std::cout << "Erreur A" << std::endl;
@@ -34,8 +33,9 @@ GameWindow::GameWindow()
 
     aSprite.setPosition(sf::Vector2f(rand() % LETTER_MAX_WITDH, rand() % LETTER_MAX_HEIGHT));
     fxSprite.setPosition(sf::Vector2f(rand() % LETTER_MAX_WITDH, rand() % LETTER_MAX_HEIGHT));
+}
 
-
+void GameWindow::runGame() {
     while (window.isOpen()) {
 
         if (!roundOver) {
@@ -85,12 +85,12 @@ GameWindow::GameWindow()
         }
 
         roundOver = false;
-                
+            
         aSprite.setPosition(sf::Vector2f(rand() % LETTER_MAX_WITDH, rand() % LETTER_MAX_HEIGHT));
         fxSprite.setPosition(sf::Vector2f(rand() % LETTER_MAX_WITDH, rand() % LETTER_MAX_HEIGHT));
 
         timeIterator = 0;
-        
+    
         window.display();
     }
 }

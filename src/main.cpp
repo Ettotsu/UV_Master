@@ -3,5 +3,6 @@
 
 int main() {
   GameWindow game;
+  game.runGame();
   return 0;
 }
